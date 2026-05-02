@@ -1,0 +1,175 @@
+
+// STORAGE KEYS
+const MOVIES_KEY = "movies";
+const SESSION_USER_KEY = "currentUser";
+
+// Load movies from localStorage
+function loadMovies() {
+    return JSON.parse(localStorage.getItem(MOVIES_KEY)) || [];
+}
+
+// Save movies to localStorage
+function saveMovies(list) {
+    localStorage.setItem(MOVIES_KEY, JSON.stringify(list));
+}
+
+// Initialize default movies if none exist
+function initializeMovies() {
+    // Merge default movies into storage (add any missing titles) so we don't overwrite user's existing list
+    function getDefaultMovies() {
+        return [
+            { id: 1, title: "Interstellar", genre: "Drama", year: 2014, rating: 4.6, img: "../Images/Interstellar.png" },
+            { id: 2, title: "The Equalizer", genre: "Action", year: 2014, rating: 4.3, img: "../Images/TheEqualizer.png" },
+            { id: 3, title: "The Hunger Games", genre: "Action", year: 2014, rating: 4.1, img: "../Images/TheHungerGames.png" },
+            { id: 4, title: "Fast And Furious", genre: "Action", year: 2017, rating: 3.9, img: "../Images/Fast&Furious.png" },
+            { id: 5, title: "Creed", genre: "Drama", year: 2016, rating: 4.2, img: "../Images/Creed.png" },
+            { id: 6, title: "Ride Along", genre: "Comedy", year: 2014, rating: 3.8, img: "../Images/RideAlong.png" },
+            { id: 7, title: "Train To Busan", genre: "Action", year: 2016, rating: 4.5, img: "../Images/TrainToBusan.png" }
+        ];
+    }
+
+    const defaults = getDefaultMovies();
+    let existing = loadMovies();
+    let added = false;
+    defaults.forEach(d => {
+        if (!existing.some(m => (m.title || '').toLowerCase() === (d.title || '').toLowerCase())) {
+            existing.push(d);
+            added = true;
+        }
+    });
+    if (added) saveMovies(existing);
+}
+
+// Render movie grid dynamically
+function renderMovies(movies) {
+    const container = document.querySelector(".movie-grid");
+    container.innerHTML = "";
+
+    movies.forEach(movie => {
+        const card = document.createElement("div");
+        card.className = "movie";
+
+        card.innerHTML = `
+            <img src="${movie.img}" alt="${movie.title}">
+            <h3>${movie.title}</h3>
+        `;
+
+        // Click handler for each movie
+        card.addEventListener("click", () => {
+            const PAGE_MAP = {
+                "Interstellar": "Interstellar.html",
+                "The Equalizer": "TheEqualizer.html",
+                "The Hunger Games": "TheHungerGames.html",
+                "Fast And Furious": "Fast&Furious.html",
+                "Ride Along": "RideAlong.html",
+                "Train To Busan": "TrainToBusan.html",
+                "Creed": "Creed.html"
+            };
+            const page = PAGE_MAP[movie.title] || "movie_list.html";
+            sessionStorage.setItem("selectedMovie", JSON.stringify(movie));
+            window.location.href = page;
+        });
+
+        container.appendChild(card);
+    });
+
+    // Update movie count
+    const countText = `Showing ${movies.length} movie${movies.length !== 1 ? "s" : ""}`;
+    document.querySelector("main p").textContent = countText;
+}
+
+// Filter movies by genre
+function filterMoviesByGenre(movies, genre) {
+    if (!genre || genre === "All") return movies;
+    return movies.filter(m => m.genre === genre);
+}
+
+// Sort movies
+function sortMovies(movies, sortOption) {
+    if (!sortOption) return movies;
+
+    let sorted = [...movies];
+    if (sortOption === "Sort by Rating") {
+        sorted.sort((a, b) => b.rating - a.rating);
+    } else if (sortOption === "Sort by Year") {
+        sorted.sort((a, b) => b.year - a.year);
+    }
+
+    return sorted;
+}
+
+// DOMContentLoaded
+document.addEventListener("DOMContentLoaded", () => {
+    initializeMovies();
+    let movies = loadMovies();
+    renderMovies(movies);
+
+    // Genre buttons
+    const genreButtons = document.querySelectorAll(".genre-tabs button");
+    genreButtons.forEach(btn => {
+        btn.addEventListener("click", () => {
+            // Highlight active button
+            genreButtons.forEach(b => b.classList.remove("active"));
+            btn.classList.add("active");
+
+            const genre = btn.textContent;
+            let filtered = filterMoviesByGenre(movies, genre);
+
+            // Apply current sort
+            const sortSelect = document.querySelector(".filters select");
+            filtered = sortMovies(filtered, sortSelect.value);
+
+            renderMovies(filtered);
+        });
+    });
+
+    // Sort select
+    const sortSelect = document.querySelector(".filters select");
+    sortSelect.addEventListener("change", () => {
+        let genre = document.querySelector(".genre-tabs button.active").textContent;
+        let filtered = filterMoviesByGenre(movies, genre);
+
+        filtered = sortMovies(filtered, sortSelect.value);
+        renderMovies(filtered);
+    });
+
+    // Update navigation for guest/auth users
+    function updateNavBar() {
+        const navUser = document.querySelector(".nav-user");
+        const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+        if (!navUser) return;
+        if (!currentUser) {
+            navUser.innerHTML = `
+                <a href="../user/login.html">Login</a>
+                <a href="../user/register.html">Register</a>
+                <a href="../user/movie_list.html">Movies</a>
+            `;
+            return;
+        }
+        if (currentUser.isGuest) {
+            navUser.innerHTML = `
+                <a href="../user/movie_list.html">Movies</a>
+                <a href="../user/search.html">Search</a>
+                <a href="../user/login.html">Login</a>
+            `;
+            return;
+        }
+        if (currentUser.isAdmin === true) {
+            navUser.innerHTML = `
+                <a href="../admin/admin_home.html">Admin Dashboard</a>
+                <a href="../user/movie_list.html">Movies</a>
+                <a href="../user/login.html">Logout</a>
+            `;
+            return;
+        }
+        navUser.innerHTML = `
+            <a href="../user/home.html">Dashboard</a>
+            <a href="../user/MyReviews.html">My Reviews</a>
+            <a href="../user/search.html">Search</a>
+            <a href="../user/movie_list.html">Movies</a>
+            <a href="../user/login.html">Logout</a>
+        `;
+    }
+
+    updateNavBar();
+});

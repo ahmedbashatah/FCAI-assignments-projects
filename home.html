@@ -1,0 +1,119 @@
+//STORAGE KEYS
+const USERS_KEY = "users";
+const MOVIES_KEY = "movies";
+const REVIEWS_KEY = "reviews"; 
+const SESSION_USER_KEY = "currentUser";
+
+   //LOAD STORAGE
+function loadUsers() { return JSON.parse(localStorage.getItem(USERS_KEY)) || []; }
+function loadMovies() { return JSON.parse(localStorage.getItem(MOVIES_KEY)) || []; }
+function loadReviews() { return JSON.parse(localStorage.getItem(REVIEWS_KEY)) || []; }
+
+  //SAVE STORAGE
+function saveMovies(list) { localStorage.setItem(MOVIES_KEY, JSON.stringify(list)); }
+
+   //SESSION HANDLING
+function getLoggedInUser() {
+    return JSON.parse(sessionStorage.getItem(SESSION_USER_KEY));
+}
+
+//DASHBOARD PAGE LOGIC
+document.addEventListener("DOMContentLoaded", () => {
+    
+    const user = getLoggedInUser();
+   if (user && !user.isGuest) {
+    loadDashboardStats(user.username);
+}
+
+loadRecommendedMovies();
+
+// Update navigation for guest/auth users
+(function updateNavBar() {
+    const navUser = document.querySelector(".nav-user");
+    const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+    if (!navUser) return;
+    if (!currentUser) {
+        navUser.innerHTML = `
+            <a href="../user/login.html">Login</a>
+            <a href="../user/register.html">Register</a>
+            <a href="../user/movie_list.html">Movies</a>
+        `;
+        return;
+    }
+    if (currentUser.isGuest) {
+        navUser.innerHTML = `
+            <a href="../user/movie_list.html">Movies</a>
+            <a href="../user/search.html">Search</a>
+            <a href="../user/login.html">Login</a>
+        `;
+        return;
+    }
+    if (currentUser.isAdmin === true) {
+        navUser.innerHTML = `
+            <a href="../admin/admin_home.html">Admin Dashboard</a>
+            <a href="../user/movie_list.html">Movies</a>
+            <a href="../user/login.html">Logout</a>
+        `;
+        return;
+    }
+    navUser.innerHTML = `
+        <a href="../user/home.html">Dashboard</a>
+        <a href="../user/MyReviews.html">My Reviews</a>
+        <a href="../user/search.html">Search</a>
+        <a href="../user/movie_list.html">Movies</a>
+        <a href="../user/login.html">Logout</a>
+    `;
+})();
+
+});
+
+   //DASHBOARD — STATISTICS
+function loadDashboardStats(username) {
+    const reviews = loadReviews().filter(
+        r => r.username === username && r.status === "approved"
+    );
+
+    const totalApproved = reviews.length;
+    const avgRating =
+        totalApproved === 0
+            ? 0
+            : (reviews.reduce((s, r) => s + Number(r.rating), 0) / totalApproved).toFixed(1);
+
+    document.querySelector(".stat:nth-child(1) .number").textContent = totalApproved;
+    document.querySelector(".stat:nth-child(2) .number").textContent = totalApproved;
+    document.querySelector(".stat:nth-child(3) .number").textContent = avgRating;
+}
+
+   //DASHBOARD — RECOMMENDED MOVIES
+function loadRecommendedMovies() {
+    const movies = loadMovies();
+    const container = document.querySelector(".movie-grid");
+
+    container.innerHTML = ""; 
+
+    movies.forEach(movie => {
+        const card = document.createElement("div");
+        card.classList.add("movie");
+
+        card.innerHTML = `
+            <img src="${movie.img}" alt="${movie.title}">
+            <h3>${movie.title}</h3>
+        `;
+        card.addEventListener("click", () => {
+            const PAGE_MAP = {
+                "Interstellar": "Interstellar.html",
+                "The Equalizer": "TheEqualizer.html",
+                "The Hunger Games": "TheHungerGames.html",
+                "Fast And Furious": "Fast&Furious.html",
+                "Ride Along": "RideAlong.html",
+                "Train To Busan": "TrainToBusan.html",
+                "Creed": "Creed.html"
+            };
+            const page = PAGE_MAP[movie.title] || "movie_list.html";
+            sessionStorage.setItem("selectedMovie", JSON.stringify(movie));
+            window.location.href = page;
+        });
+
+        container.appendChild(card);
+    });
+}

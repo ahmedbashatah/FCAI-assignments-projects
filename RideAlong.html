@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browse Movies - Guest - MovieReviews</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="user">
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">MovieReviews</div>
+                <nav>
+                        <div class="nav-user">
+                            <a href="../user/movie_list.html">Movies</a>
+                            <a href="../user/search.html">Search</a>
+                            <a href="../user/login.html">Login</a>
+                        </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <h1>All Movies</h1>
+        
+        <div class="filters">
+            <div class="genre-tabs">
+                <button class="active">All</button>
+                <button>Action</button>
+                <button>Drama</button>
+                <button>Comedy</button>
+                <button>Sci-Fi</button>
+            </div>
+            <select>
+                <option>Sort by Rating</option>
+                <option>Sort by Year</option>
+            </select>
+        </div>
+
+        <p>Showing 8 movies</p >
+        
+        <div class="movie-grid">
+        </div>
+    </main>
+      <footer>
+        <div class="container">MovieReviews © 2025</div>
+      </footer>
+    <script src="../javascript/user_movielist.js"></script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Fast&Furious - MovieReviews</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="user">
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <div class="logo">MovieReviews</div>
+        <nav>
+          <div class="nav-user">
+            <a href="../user/home.html">Dashboard</a>
+            <a href="../user/MyReviews.html">My Reviews</a>
+            <a href="../user/search.html">Search</a>
+            <a href="../user/movie_list.html">Movies</a>
+            <a href="../user/login.html">Logout</a>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1>Movies List</h1>
+
+    <div class="movie_item" style="background-image: url('../Images/Fast&FuriousBlur.png');">
+      <div class="poster">
+        <img src="../Images/Fast&Furious.png" alt="Creed Poster" width="250" height="370"/> 
+      </div>
+
+      <div class="text_area">
+        <h2><b>Fast&Furious</b></h2>
+        <br><br/>
+        <p>
+          Brian O'Conner, back working for the FBI in Los Angeles, teams up with Dominic Toretto to bring 
+          down a heroin importer by infiltrating his operation.
+        </p>
+        <br><br/>
+        <p class="movie-meta">2009, 1h 47m ,⭐⭐⭐⭐⭐⭐⭐ (6.5/10)</p>
+        <br><br/>
+        <hr class="movie-meta">
+
+        <p><b>Genre:</b> Action, Car Action, Thriller</p>
+        <hr class="movie-meta">
+
+        <p><b>Director:</b> Justin Lin</p>
+        <hr class="movie-meta">
+
+        <p><b>Writer:</b> Chris Morgan, Gary Scott Thompson</p>
+        <hr class="movie-meta">
+
+        <p><b>Stars:</b> Vin Diesel, Paul Walker, Michelle Rodriguez</p>
+
+      </div>
+    </div>
+  </div>
+  <h3 class="movie-detail-heading"> Storyline </h3>
+   <br><br/>
+  <p class="movie-detail-section">
+    Heading back to the streets where it all began, two men rejoin two women to blast muscle, 
+    tuner and exotic cars across Los Angeles and floor through the Mexican desert. 
+    When a crime brings them back to L.A., fugitive ex-con Dom Toretto reignites his feud with agent Brian O'Connor. 
+    But as they are forced to confront a shared enemy, Dom and Brian must give in to an uncertain new trust if they hope to outmaneuver him. 
+    And from convoy heists to precision tunnel crawls across international lines, two men will find the best way to get revenge: 
+    push the limits of what's possible behind the wheel.
+    </p>
+    <br><br/>
+
+    <h3 class="movie-detail-heading">
+        Top Cast </h3>
+        <br><br/>
+    <p class="cast-member">
+        <img src="../Images/Fast&Furious1.png" alt="Michael B. Jordan Image" width="100" height="110" class="cast-image">
+        Vin Diesel (Dominic Toretto)<br>
+    </p>
+    
+  <p class="cast-member">
+        <img src="../Images/Fast&Furious4.png" alt="Tessa Thompson Image" width="100" height="110" class="cast-image">
+        Paul Walker (Brian O'Conner)<br>
+    </p>
+
+    <p class="cast-member">
+        <img src="../Images/Fast&Furious2.png" alt="Tony Bellew Image" width="100" height="110" class="cast-image">
+        Jordana Brewster (Mia)<br>
+    </p>
+    <p class="cast-member">
+        <img src="../Images/Fast&Furious3.png" alt="Sylvester Stallone Image" width="100" height="110" class="cast-image">
+        Michelle Rodriguez (Letty)<br>
+    </p>
+    
+    <h2 class="review-section-heading">Leave Your Review</h2>
+
+  <form action="#" method="post">
+  <div class="rating rating-section">
+  <input type="radio" id="star5" name="rating" value="5">
+  <label for="star5">★</label>
+
+  <input type="radio" id="star4" name="rating" value="4">
+  <label for="star4">★</label>
+
+  <input type="radio" id="star3" name="rating" value="3">
+  <label for="star3">★</label>
+
+  <input type="radio" id="star2" name="rating" value="2">
+  <label for="star2">★</label>
+
+  <input type="radio" id="star1" name="rating" value="1">
+  <label for="star1">★</label>
+</div>
+
+  <br>
+
+  <textarea name="review" rows="4" cols="50" placeholder="Write your review..." class="review-textarea"></textarea>
+
+  <br><br>
+
+  <button type="submit" class="btn-submit">Submit</button>
+</form>
+<div id="reviews-container"></div>
+
+      <script src="../javascript/Fast&Furious.js"></script>
+
+
+</body>
+</html>
+

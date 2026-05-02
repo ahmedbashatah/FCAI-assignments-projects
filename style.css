@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Movies - Admin Panel</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="admin">
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">MovieReviews - Admin</div>
+                <nav>
+                    <div class="nav-admin">
+                        <a href="../admin/admin_home.html">Dashboard</a>
+                        <a href="../admin/admin_movies.html" class="active">Manage Movies</a>
+                        <a href="../admin/admin_reviews.html">Manage Reviews</a>
+                        <a href="../admin/admin_movie_list.html">View Movies</a>
+                        <a href="../user/login.html">Logout</a>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <h1>Manage Movies</h1>
+
+        <div class="actions">
+            <a href="#add-movie" class="btn">Add New Movie</a>
+            <a href="../admin/admin_home.html" class="btn">Back to Dashboard</a>
+        </div>
+
+        <!-- Add Movie Form -->
+        <div id="add-movie" class="movie-form">
+            <h2>Add New Movie</h2>
+            <form action="#" method="post">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="movie-id">Movie ID:</label>
+                        <input type="text" id="movie-id" name="movie_id" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="movie-title">Title:</label>
+                        <input type="text" id="movie-title" name="title" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="movie-genre">Genre:</label>
+                        <select id="movie-genre" name="genre" required>
+                            <option value="">Select Genre</option>
+                            <option value="Action">Action</option>
+                            <option value="Drama">Drama</option>
+                            <option value="Comedy">Comedy</option>
+                            <option value="Horror">Horror</option>
+                            <option value="Sci-Fi">Sci-Fi</option>
+                            <option value="Thriller">Thriller</option>
+                            <option value="Romance">Romance</option>
+                            <option value="Adventure">Adventure</option>
+                        </select>
+                    </div>
+
+                    <!-- NEW CALENDAR FIELD -->
+                    <div class="form-group">
+                        <label for="movie-date">Release Date:</label>
+                        <input type="date" id="movie-date" name="release_date" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="movie-director">Director:</label>
+                    <input type="text" id="movie-director" name="director" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="movie-description">Description:</label>
+                    <textarea id="movie-description" name="description" rows="4" required></textarea>
+                </div>
+                
+                <div class="form-actions">
+                    <input type="submit" value="Add Movie" class="btn" onclick="window.location.href='admin_movies.html'">
+                    <input type="reset" value="Clear Form" class="btn btn-secondary">
+                </div>
+            </form>
+        </div>
+
+        <!-- Movies List -->
+        <h2>All Movies</h2>
+        <div class="search-form">
+            <input type="text" placeholder="Search movies..." name="search">
+            <select name="genre_filter">
+                <option value="">All Genres</option>
+                <option value="Action">Action</option>
+                <option value="Drama">Drama</option>
+                <option value="Comedy">Comedy</option>
+                <option value="Horror">Horror</option>
+                <option value="Sci-Fi">Sci-Fi</option>
+                <option value="Thriller">Thriller</option>
+                <option value="Romance">Romance</option>
+                <option value="Adventure">Adventure</option>
+            </select>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Genre</th>
+                    <th>Year</th>
+                    <th>Director</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Train to Busan</td>
+                    <td>Horror</td>
+                    <td>2016</td>
+                    <td>Yeon Sang-ho</td>
+                    <td>
+                        <a href="#edit-1" class="btn btn-small">Edit</a>
+                        <a href="#delete-1" class="btn btn-small btn-danger">Delete</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Creed</td>
+                    <td>Drama</td>
+                    <td>2015</td>
+                    <td>Ryan Coogler</td>
+                    <td>
+                        <a href="#edit-2" class="btn btn-small">Edit</a>
+                        <a href="#delete-2" class="btn btn-small btn-danger">Delete</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Inception</td>
+                    <td>Sci-Fi</td>
+                    <td>2010</td>
+                    <td>Christopher Nolan</td>
+                    <td>
+                        <a href="#edit-3" class="btn btn-small">Edit</a>
+                        <a href="#delete-3" class="btn btn-small btn-danger">Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Edit Movie Modal/Form -->
+        <div id="edit-movie" class="movie-form">
+            <h2>Edit Movie</h2>
+            <form action="#" method="post">
+                <input type="hidden" name="movie_id" value="">
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="edit-title">Title:</label>
+                        <input type="text" id="edit-title" name="title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-genre">Genre:</label>
+                        <select id="edit-genre" name="genre" required>
+                            <option value="Action">Action</option>
+                            <option value="Drama">Drama</option>
+                            <option value="Comedy">Comedy</option>
+                            <option value="Horror">Horror</option>
+                            <option value="Sci-Fi">Sci-Fi</option>
+                            <option value="Thriller">Thriller</option>
+                            <option value="Romance">Romance</option>
+                            <option value="Adventure">Adventure</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <!-- UPDATED TO CALENDAR -->
+                    <div class="form-group">
+                        <label for="edit-date">Release Date:</label>
+                        <input type="date" id="edit-date" name="release_date" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="edit-director">Director:</label>
+                        <input type="text" id="edit-director" name="director" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="edit-description">Description:</label>
+                    <textarea id="edit-description" name="description" rows="4" required></textarea>
+                </div>
+                
+                <div class="form-actions">
+                    <input type="submit" value="Update Movie" class="btn">
+                    <input type="button" value="Cancel" class="btn btn-secondary" onclick="document.getElementById('edit-movie').style.display='none'">
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">MovieReviews Admin Panel © 2025</div>
+    </footer>
+    <script src="../javascript/admin_app.js"></script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Login and Sign Up</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="login-page guest">
+
+  <input type="checkbox" id="formToggle">
+  <div id="login">
+    <form action="../user/home.html" method="get">
+      <h2>User Login</h2>
+      Username:<br>
+      <input type="text" name="username" required><br><br>
+      Password:<br>
+      <input type="password" name="password" required><br><br>
+      <input type="submit" value="Log In as User"><br><br>
+      <input type="button" id="guestBtn" value="Continue as Guest"><br><br>
+      <p>Don't have an account? <label for="formToggle">Sign up</label></p>
+      <hr style="margin: 20px 0;">
+      <p><a href="../admin/admin_login.html" style="color: var(--primary-color); text-decoration: none;">Admin Login</a></p>
+    </form>
+  </div>
+  <div id="signup">
+  <form id="signupForm">
+    <h2>Sign Up</h2>
+
+    Username:
+    <input type="text" name="username" required><br><br>
+
+    Password:
+    <input type="password" name="password" required><br><br>
+
+    Confirm Password:
+    <input type="password" name="confirm" required><br><br>
+
+    Email:
+    <input type="email" name="email" required><br><br>
+
+    is_admin:
+    <input type="checkbox" name="isAdmin"><br><br>
+
+    <input type="submit" value="Sign Up">
+  </form>
+</div>
+
+  <script src="../javascript/login_java.js"></script>
+</body>
+</html>
+
+
+
+
+
+

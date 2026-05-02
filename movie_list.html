@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Creed - MovieReviews</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="user">
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <div class="logo">MovieReviews</div>
+        <nav>
+          <div class="nav-user">
+            <a href="../user/home.html">Dashboard</a>
+            <a href="../user/MyReviews.html">My Reviews</a>
+            <a href="../user/search.html">Search</a>
+            <a href="../user/movie_list.html">Movies</a>
+            <a href="../user/login.html">Logout</a>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1>Movies List</h1>
+
+    <div class="movie_item" style="background-image: url('../Images/CreedBlur.png');">
+      <div class="poster">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyeBvteg_TMnb6fDUIlas25blcAv3dX4R4HenSEA-mzAu8BJts318YenrI7cY0jeQR1PKU3w" alt="Creed Poster" width="250" height="370"/> 
+      </div>
+
+      <div class="text_area">
+        <h2><b>Creed</b></h2>
+        <br><br/>
+        <p>
+          The former World Heavyweight Champion Rocky Balboa serves as a trainer and mentor to Adonis Johnson, 
+          the son of his late friend and former rival Apollo Creed.
+        </p>
+        <br><br/>
+        <p class="movie-meta">2015, 2h 13m ,⭐⭐⭐⭐⭐⭐⭐⭐ (7.6/10)</p>
+        <br><br/>
+        <hr class="movie-meta">
+
+        <p><b>Genre:</b> Boxing, Action, Drama</p>
+        <hr class="movie-meta">
+
+        <p><b>Director:</b> Ryan Coogler</p>
+        <hr class="movie-meta">
+
+        <p><b>Writer:</b> Ryan Coogler, Aaron Covington, Sylvester Stallone</p>
+        <hr class="movie-meta">
+
+        <p><b>Stars:</b> Michael B. Jordan, Sylvester Stallone, Tessa Thompson</p>
+
+      </div>
+    </div>
+  </div>
+  <h3 class="movie-detail-heading"> Storyline </h3>
+   <br><br/>
+  <p class="movie-detail-section">
+    Adonis Johnson is the son of the famous boxing champion Apollo Creed, 
+    who died in a boxing match in Rocky IV (1985). 
+    Adonis wasn't born until after his father's death and wants to follow his fathers footsteps in boxing. 
+    He seeks a mentor who is the former heavyweight boxing champion and former friend of Apollo Creed, 
+    the retired Rocky Balboa. Rocky eventually agrees to mentor Adonis. 
+    With Rocky's help they hope to get a title job to face even deadlier opponents than his father. 
+    But whether he is a true fighter remains to be seen....
+    </p>
+    <br><br/>
+
+    <h3 class="movie-detail-heading">
+        Top Cast </h3>
+        <br><br/>
+    <p class="cast-member">
+        <img src="../Images/Creed2.png" alt="Michael B. Jordan Image" width="100" height="110" class="cast-image">
+        Michael B. Jordan (Adonis Johnson)<br>
+    </p>
+    
+  
+
+    <p class="cast-member">
+        <img src="../Images/Creed1.png" alt="Tony Bellew Image" width="100" height="110" class="cast-image">
+        Tony Bellew ('Pretty' Ricky Conlan)<br>
+    </p>
+    <p class="cast-member">
+        <img src="../Images/Creed3.png" alt="Sylvester Stallone Image" width="100" height="110" class="cast-image">
+        Sylvester Stallone (Rocky Balboa)<br>
+    </p>
+    <p class="cast-member">
+        <img src="../Images/Creed4.png" alt="Tessa Thompson Image" width="100" height="110" class="cast-image">
+        Tessa Thompson (Bianca)<br>
+    </p>
+    <h2 class="review-section-heading">Leave Your Review</h2>
+
+  <form action="#" method="post">
+  <div class="rating rating-section">
+  <input type="radio" id="star5" name="rating" value="5">
+  <label for="star5">★</label>
+
+  <input type="radio" id="star4" name="rating" value="4">
+  <label for="star4">★</label>
+
+  <input type="radio" id="star3" name="rating" value="3">
+  <label for="star3">★</label>
+
+  <input type="radio" id="star2" name="rating" value="2">
+  <label for="star2">★</label>
+
+  <input type="radio" id="star1" name="rating" value="1">
+  <label for="star1">★</label>
+</div>
+
+
+
+  <br>
+
+  <textarea name="review" rows="4" cols="50" placeholder="Write your review..." class="review-textarea"></textarea>
+
+  <br><br>
+
+  <button type="submit" class="btn-submit">Submit</button>
+</form>
+<div id="reviews-container"></div>
+
+      <script src="../javascript/Creed.js"></script>
+
+
+</body>
+</html>
+

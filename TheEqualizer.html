@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Interstellar - MovieReviews</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="user">
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <div class="logo">MovieReviews</div>
+        <nav>
+          <div class="nav-user">
+            <a href="../user/home.html">Dashboard</a>
+            <a href="../user/MyReviews.html">My Reviews</a>
+            <a href="../user/search.html">Search</a>
+            <a href="../user/movie_list.html">Movies</a>
+            <a href="../user/login.html">Logout</a>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1>Movies List</h1>
+
+    <div class="movie_item" style="background-image: url('../Images/InterstellarBlur.png');">
+      <div class="poster">
+        <img src="../Images/Interstellar.png" alt="Creed Poster" width="250" height="370"/> 
+      </div>
+
+      <div class="text_area">
+        <h2><b>Interstellar</b></h2>
+        <br><br/>
+        <p>
+          When Earth becomes uninhabitable in the future, a farmer and ex-NASA pilot, 
+          Joseph Cooper, is tasked to pilot a spacecraft, along with a team of researchers, to find a new planet for humans.
+        </p>
+        <br><br/>
+        <p class="movie-meta">2014, 2h 49m ,⭐⭐⭐⭐⭐⭐⭐⭐⭐ (8.7/10)</p>
+        <br><br/>
+        <hr class="movie-meta">
+
+        <p><b>Genre:</b> Adventure Epic, Quest, Drama</p>
+        <hr class="movie-meta">
+
+        <p><b>Director:</b> Christopher Nolan </p>
+        <hr class="movie-meta">
+
+        <p><b>Writer:</b> Jonathan Nolan, Christopher Nolan</p>
+        <hr class="movie-meta">
+
+        <p><b>Stars:</b> Matthew McConaughey, Anne Hathaway, Jessica Chastain </p>
+
+      </div>
+    </div>
+  </div>
+  <h3 class="movie-detail-heading"> Storyline </h3>
+   <br><br/>
+  <p class="movie-detail-section">
+    In the near future around the American Midwest, Cooper, an ex-science engineer and pilot, is tied to his farming land with his daughter Murph and son Tom. 
+    As devastating sandstorms ravage Earth's crops, the people of Earth realize their life here is coming to an end as food begins to run out. 
+    Eventually stumbling upon a N.A.S.A. base 6 hours from Cooper's home, he is asked to go on a daring mission with a few other scientists into a wormhole because of Cooper's scientific intellect and ability to pilot aircraft unlike the other crew members. 
+    In order to find a new home while Earth decays, 
+    Cooper must decide to either stay, or risk never seeing his children again in order to save the human race by finding another habitable planet.
+    </p>
+    <br><br/>
+
+    <h3 class="movie-detail-heading">
+        Top Cast </h3>
+        <br><br/>
+    <p class="cast-member">
+        <img src="../Images/Interstellar1.png" alt="Matthew McConaughey Image" width="100" height="110" class="cast-image">
+        Matthew McConaughey (Cooper)<br>
+    </p>
+    
+  
+
+    <p class="cast-member">
+        <img src="../Images/Interstellar2.png" alt="Anne Hathaway Image" width="100" height="110" class="cast-image">
+        Anne Hathaway (Brand)<br>
+    </p>
+    <p class="cast-member">
+        <img src="../Images/Interstellar3.png" alt="Mackenzie Foy Image" width="100" height="110" class="cast-image">
+        Mackenzie Foy (Murph)<br>
+    </p>
+    <p class="cast-member">
+        <img src="../Images/Interstellar4.png" alt="Timothée Chalamet Image" width="100" height="110" class="cast-image">
+        Timothée Chalamet (Tom)<br>
+    </p>
+    <h2 class="review-section-heading">Leave Your Review</h2>
+
+  <form action="#" method="post">
+  <div class="rating rating-section">
+  <input type="radio" id="star5" name="rating" value="5">
+  <label for="star5">★</label>
+
+  <input type="radio" id="star4" name="rating" value="4">
+  <label for="star4">★</label>
+
+  <input type="radio" id="star3" name="rating" value="3">
+  <label for="star3">★</label>
+
+  <input type="radio" id="star2" name="rating" value="2">
+  <label for="star2">★</label>
+
+  <input type="radio" id="star1" name="rating" value="1">
+  <label for="star1">★</label>
+</div>
+  <br>
+
+  <textarea name="review" rows="4" cols="50" placeholder="Write your review..." class="review-textarea"></textarea>
+
+  <br><br>
+
+  <button type="submit" class="btn-submit">Submit</button>
+  </form>
+  <div id="reviews-container"></div>
+
+  <script src="../javascript/Interstellar.js"></script>
+
+
+</body>
+</html>
+

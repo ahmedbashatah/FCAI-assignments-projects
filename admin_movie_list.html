@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - MovieReviews</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="admin">
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">MovieReviews - Admin</div>
+                <nav>
+                    <div class="nav-admin">
+                        <a href="../admin/admin_home.html" class="active">Dashboard</a>
+                        <a href="../admin/admin_movies.html">Manage Movies</a>
+                        <a href="../admin/admin_reviews.html">Manage Reviews</a>
+                        <a href="../admin/admin_movie_list.html">View Movies</a>
+                        <a href="../user/login.html">Logout</a>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <h1>Admin Dashboard</h1>
+
+        <div class="stats">
+            <div class="stat">
+                <div class="number">15</div>
+                <div>Total Movies</div>
+            </div>
+            <div class="stat">
+                <div class="number">8</div>
+                <div>Pending Reviews</div>
+            </div>
+            <div class="stat">
+                <div class="number">42</div>
+                <div>Approved Reviews</div>
+            </div>
+            <div class="stat">
+                <div class="number">3</div>
+                <div>Rejected Reviews</div>
+            </div>
+        </div>
+
+        <div class="actions">
+            <a href="../admin/admin_movies.html" class="btn">Manage Movies</a>
+            <a href="../admin/admin_reviews.html" class="btn">Manage Reviews</a>
+            <a href="../user/movie_list.html" class="btn">View All Movies</a>
+        </div>
+
+        <h2>Recent Activity</h2>
+        <div class="admin-activity">
+            <div class="activity-item">
+                <strong>New Review Submitted:</strong> "Great movie!" for Train to Busan
+                <span class="activity-time">2 hours ago</span>
+            </div>
+            <div class="activity-item">
+                <strong>Movie Added:</strong> "Inception" by Christopher Nolan
+                <span class="activity-time">1 day ago</span>
+            </div>
+            <div class="activity-item">
+                <strong>Review Approved:</strong> "Amazing action sequences!" for Creed
+                <span class="activity-time">2 days ago</span>
+            </div>
+        </div>
+
+        <h2>Quick Actions</h2>
+        <div class="quick-actions">
+            <a href="../admin/admin_movies.html?action=add" class="btn">Add New Movie</a>
+            <a href="../admin/admin_reviews.html?filter=pending" class="btn">Review Pending Reviews</a>
+            <a href="../admin/admin_movies.html?action=edit" class="btn">Edit Movies</a>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">MovieReviews Admin Panel © 2025</div>
+    </footer>
+    
+    <script src="../javascript/admin_app.js"></script>
+</body>
+</html>
+
+
+

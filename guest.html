@@ -1,0 +1,194 @@
+// Global Movie Info
+const MOVIE_ID = "Train_To_Busan";
+
+
+// Load Current User
+const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+
+
+
+// Elements
+const form = document.querySelector("form");
+const reviewInput = document.querySelector(".review-textarea");
+const ratingInputs = document.querySelectorAll("input[name='rating']");
+
+
+
+// Navigation Bar Control
+function updateNavBar() {
+    const navUser = document.querySelector(".nav-user");
+
+    if (!currentUser) {
+        navUser.innerHTML = `
+            <a href="../user/login.html">Login</a>
+            <a href="../user/register.html">Register</a>
+            <a href="../user/movie_list.html">Movies</a>
+        `;
+        return;
+    }
+
+    // Guest user: simplified nav
+    if (currentUser && currentUser.isGuest) {
+        navUser.innerHTML = `
+            <a href="../user/movie_list.html">Movies</a>
+            <a href="../user/search.html">Search</a>
+            <a href="../user/login.html">Login</a>
+        `;
+        return;
+    }
+
+    if (currentUser.isAdmin === true) {
+        navUser.innerHTML = `
+            <a href="../admin/admin_home.html">Admin Dashboard</a>
+            <a href="../user/movie_list.html">Movies</a>
+            <a href="../user/login.html">Logout</a>
+        `;
+    } else {
+        navUser.innerHTML = `
+            <a href="../user/home.html">Dashboard</a>
+            <a href="../user/MyReviews.html">My Reviews</a>
+            <a href="../user/search.html">Search</a>
+            <a href="../user/movie_list.html">Movies</a>
+            <a href="../user/login.html">Logout</a>
+        `;
+    }
+}
+
+updateNavBar();
+
+
+
+// Block Review Form if NOT logged in or guest
+if (!currentUser || currentUser.isGuest) {
+    form.innerHTML = `<p style='color:red; font-size:20px;'>
+        You must be logged in to leave a review.
+    </p>`;
+}
+
+
+// Validate Form Inputs
+function validateReview() {
+    let rating = document.querySelector("input[name='rating']:checked");
+
+    if (!rating) {
+        alert("Please choose a rating!");
+        return false;
+    }
+
+    if (reviewInput.value.trim() === "") {
+        alert("Review cannot be empty!");
+        return false;
+    }
+
+    return true;
+}
+
+
+
+// Save Review to LocalStorage
+function saveReview() {
+    let rating = Number(document.querySelector("input[name='rating']:checked").value);
+    let reviewText = reviewInput.value.trim();
+    let user = currentUser;
+
+    let allReviews = JSON.parse(localStorage.getItem("reviews")) || [];
+
+    let newReview = {
+        id: "rv_" + Date.now().toString(36) + Math.random().toString(36).substring(2),
+        movieId: MOVIE_ID,  
+        username: user.username,
+        rating: rating,
+        text: reviewText,
+        status: "pending",
+        createdAt: new Date().toISOString()
+    };
+
+    allReviews.push(newReview);
+    localStorage.setItem("reviews", JSON.stringify(allReviews));
+
+    return newReview;
+}
+
+
+
+
+// Add Review 
+function addReviewToPage(r) {
+    const container = document.querySelector("#reviews-container");
+
+    const div = document.createElement("div");
+    div.className = "review";
+    div.innerHTML = `
+        <h4>${"⭐".repeat(r.rating)}</h4>
+        <p>${r.text}</p>
+        <small>By: ${r.username}</small>
+        <hr>
+    `;
+
+    container.appendChild(div);
+}
+
+// Display Existing Reviews on Load
+function displayReviews() {
+    let allReviews = JSON.parse(localStorage.getItem("reviews")) || [];
+    let movieReviews = allReviews.filter(r => r.movieId === MOVIE_ID && r.status === "approved");
+    let container = document.querySelector("#reviews-container");
+
+    container.innerHTML = `<h2 class="review-section-heading">Reviews</h2><br>`;
+
+    movieReviews.forEach(r => {
+        addReviewToPage(r);
+    });
+}
+displayReviews();
+
+// Load Reviews
+function loadReviews() {
+    const allReviews = JSON.parse(localStorage.getItem("reviews") || "[]");
+
+    const movieReviews = allReviews.filter(
+        r => r.movieId === MOVIE_ID && r.status === "approved"
+    );
+
+    const container = document.querySelector("#reviews-container");
+    container.innerHTML = "";
+
+    movieReviews.forEach(r => {
+        const div = document.createElement("div");
+        div.className = "review";
+        div.innerHTML = `
+            <h4>${"⭐".repeat(r.rating)}</h4>
+            <p>${r.text}</p>
+            <small>By: ${r.username}</small>
+        `;
+        container.appendChild(div);
+    });
+}
+
+window.addEventListener("storage", function (e) {
+    if (e.key === "reviews") {
+        loadReviews(); 
+    }
+});
+
+
+// Handle Submit
+if (currentUser && !currentUser.isGuest) {
+    form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        if (validateReview()) {
+            saveReview(); 
+        alert("Review added! Waiting for admin approval.");
+
+            reviewInput.value = "";
+            ratingInputs.forEach(r => r.checked = false);
+        }
+    });
+}
+
+// Clear session on logout link click
+document.addEventListener('click', function (e) {
+    const a = e.target.closest('a[href$="login.html"]');
+    if (a) sessionStorage.removeItem('currentUser');
+});

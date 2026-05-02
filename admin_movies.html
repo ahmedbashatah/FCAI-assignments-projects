@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Admin Login</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="login-page guest">
+
+  <input type="checkbox" id="formToggle">
+  <div id="login">
+    <form action="../admin/admin_home.html" method="get">
+      <h2>Admin Login</h2>
+      Username:<br>
+      <input type="text" name="username" required><br><br>
+      Password:<br>
+      <input type="password" name="password" required><br><br>
+      <input type="submit" value="Log In as Admin"><br><br>
+      <p><a href="../user/login.html" style="color: #3498db; text-decoration: none;">← Back to User Login</a></p>
+    </form>
+  </div>
+  <div id="signup">
+    <form>
+      <h2>Admin Sign Up</h2>
+      Username:<br>
+      <input type="text" required><br><br>
+      Password:<br>
+      <input type="password" required><br><br>
+      Confirm Password:<br>
+      <input type="password" required><br><br>
+      Email:<br>
+      <input type="email" required><br><br>
+      <input type="submit" value="Sign Up as Admin"><br><br>
+      <p><a href="../user/login.html" style="color: #3498db; text-decoration: none;">← Back to User Login</a></p>
+    </form>
+  </div>
+  <script src="../javascript/admin_login_java.js"></script>
+
+</body>
+</html>
+
+
